@@ -2,27 +2,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import ServiceRoutes  from "../components/ServiceRoutes";
-import Layout from "../Layout";
-import { ComplianceLinks} from "../components/ComplianceRoutes";
+import ServiceRoutes from "../components/ServiceRoutes.jsx";
+import Layout from "../Layout.jsx";
+import { ComplianceLinks } from "../components/ComplianceRoutes.jsx";
 
-// 🔹 Lazy load helper
-const lazyImport = (path) => lazy(() => import(path));
-
-// 🔹 Pages (lazy-loaded)
-const Home = lazyImport("../pages/Home");
+// 🔹 Pages (lazy-loaded, direct import)
+const Home = lazy(() => import("../pages/Home.jsx"));
 
 // About
-const Contact_Us = lazyImport("../pages/About/Contact_Us");
-const AboutUs = lazyImport("../pages/About/AboutUs");
-
+const Contact_Us = lazy(() => import("../pages/About/Contact_Us.jsx"));
+const AboutUs = lazy(() => import("../pages/About/AboutUs.jsx"));
 
 // Pricing
-const BasicPlan = lazyImport("../pages/Pricing/BasicPlan");
-const StandardPlan = lazyImport("../pages/Pricing/StandardPlan");
-const PremiumPlan = lazyImport("../pages/Pricing/PremiumPlan");
+const BasicPlan = lazy(() => import("../pages/Pricing/BasicPlan.jsx"));
+const StandardPlan = lazy(() => import("../pages/Pricing/StandardPlan.jsx"));
+const PremiumPlan = lazy(() => import("../pages/Pricing/PremiumPlan.jsx"));
 
-// 🔹 Suspense Wrapper (common loader)
+// 🔹 Suspense Wrapper
 const withSuspense = (Component) => (
   <Suspense fallback={<div className="min-h-screen grid place-items-center">Loading...</div>}>
     <Component />
@@ -35,19 +31,21 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: withSuspense(Home) },
+
       // About
       { path: "/about/contact_us", element: withSuspense(Contact_Us) },
       { path: "/about/about_us", element: withSuspense(AboutUs) },
-      
-      
+
       // Pricing
       { path: "/pricing/basic-plan", element: withSuspense(BasicPlan) },
       { path: "/pricing/standard-plan", element: withSuspense(StandardPlan) },
       { path: "/pricing/premium-plan", element: withSuspense(PremiumPlan) },
+
       // Services
-     ...ServiceRoutes,
-     //Compliance
-     ...ComplianceLinks.map((link) => ({
+      ...ServiceRoutes,
+
+      // Compliance
+      ...ComplianceLinks.map((link) => ({
         path: link.path,
         element: withSuspense(link.component),
       })),
