@@ -26,13 +26,6 @@ const Seo = ({
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-
-    {/* Security + Best Practices */}
-    <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-    <meta httpEquiv="X-Frame-Options" content="DENY" />
-    <meta httpEquiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
-    <meta httpEquiv="Permissions-Policy" content="geolocation=(), microphone=()" />
-
     {/* Robots & Canonical */}
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={url} />
