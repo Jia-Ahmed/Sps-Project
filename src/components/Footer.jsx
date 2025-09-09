@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo-white.webp'
-import { ComplianceLinks } from "./ComplianceRoutes";
+import { ComplianceLinks } from './ComplianceRoutes'
 
 export default function Footer () {
-  
-
   return (
-    <footer className='bg-gradient-to-r from-slate-900 via-blue-900 to-slate-700 text-white  shadow-lg mt-auto '>
+    <footer className='bg-gradient-to-r from-slate-900 via-blue-900 to-slate-700 text-white  shadow-lg'>
       <div className='max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10'>
         <div>
           <Link

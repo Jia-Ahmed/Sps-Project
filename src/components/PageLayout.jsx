@@ -78,7 +78,11 @@ const PageLayout = ({ seo, heroTitle, heroParagraphs = [], sections = [] }) => {
                   <img
                     src={section.imageSrc}
                      alt={section.imageAlt || section.title || 'Page image'}
-                    className='rounded-lg shadow-md w-full h-[300px] md:h-[350px] object-cover'
+                    className={`rounded-lg shadow-md w-full ${
+                      section.imageFit === "contain"
+                        ? "h-auto object-contain"
+                        : "h-[300px] md:h-[350px] object-cover"
+                    }`}
                     loading="lazy"
                   />
                 </div>

@@ -28,7 +28,7 @@ const withSuspense = (Component) => (
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Layout/>,
     children: [
       { path: "/", element: withSuspense(Home) },
 
@@ -48,8 +48,8 @@ export const router = createBrowserRouter([
       ...ComplianceLinks.map((link) => ({
         path: link.path,
         element: withSuspense(link.component),
-      })),
-    ],
+      }))
+    ]
   },
   {
     path: "*",
